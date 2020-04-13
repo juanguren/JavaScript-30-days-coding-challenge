@@ -27,20 +27,22 @@ const people =[
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
 // + returns their full name only
-let filter = inventors.filter(born => 
-    born.year <= 1599)
-    .map(info =>{
-        return info.first + " " + info.last;
-    });
-    console.log(filter);
+let born150 = inventors.filter(index =>
+    index.year <= 1599
+).map(final =>{
+    return final.first + " " + final.last;
+});
+
+console.log(born150);
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
 
-let map = inventors.map((param) =>{
-    return param.first + " " + param.last;
-})
-console.log(map);
+let inventorsFullName = inventors.map((all) =>{
+    return all.first + " " + all.last;
+});
+
+console.log(inventorsFullName);
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
@@ -53,12 +55,14 @@ sortObject();
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
-
-const totalYears = inventors.reduce((total, inventor) =>{
-    return total + (inventor.passed - inventor.year);
+/* The acumulator (total) just holds value, it´s the current value (inventor) the one
+that must goe through the array */ 
+let reduceInventor = inventors.reduce((acc, cv) =>{
+    let yearsLived = cv.passed - cv.year;
+    return acc + (yearsLived); // 
 }, 0);
 
-console.log(totalYears);
+console.log(reduceInventor);
 
 
 // 5. Sort the inventors by the greatest ammount of years lived
