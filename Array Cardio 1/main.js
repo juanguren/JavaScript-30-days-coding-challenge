@@ -52,6 +52,14 @@ let sortObject = () =>{
     console.table(inventors);
 }
 sortObject();
+// Alternative solution using filter:
+/**
+ * let find = inventors.filter(time =>{
+    return yearsLived = time.passed - time.year;
+});
+
+console.log(find);
+ */
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
@@ -64,13 +72,7 @@ let reduceInventor = inventors.reduce((acc, cv) =>{
 
 console.log(reduceInventor);
 
-
 // 5. Sort the inventors by the greatest ammount of years lived
-
-inventors.filter(time =>{
-    yearsLived = time.passed - time.year;
-    console.log(yearsLived);
-});
 
 // first parameter must ALWAYS compare with second parameter
 const yearsLivedFinal = inventors.sort((a, b) =>{ 
