@@ -67,7 +67,7 @@ console.log(find);
 that must goe through the array */ 
 let reduceInventor = inventors.reduce((acc, cv) =>{
     let yearsLived = cv.passed - cv.year;
-    return acc + (yearsLived); // 
+    return acc + (yearsLived);
 }, 0);
 
 console.log(reduceInventor);
@@ -88,10 +88,54 @@ console.table(yearsLivedFinal);
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+/*
+let a = document.querySelector(".mw-category").querySelectorAll("a");
+
+const links = Array.from(a);
+let final = links.map(link => link.innerText)
+                 .filter(data => data.includes("de"));
+*/
+
+// Playing with filter 
+let findPeople = people.filter(item =>
+    item.includes("Ben") || item.includes("Ber")
+);
+
+console.log(findPeople.sort());
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
 
+let find = people.sort((second, first) =>{
+    // Using split on an iterating parameter such as "second", generates multiple arrays populated with splitted items.
+    //const parts = second.split(", ");
+    const [aLastName, aFirstName] = second.split(", "); /* We destructure the resulting arrays to divide its first and second values as
+    lastName and firstName  */
+    const [bLastName, bFirstName] = first.split(", "); // Same here to avoid missing letting values outside.
+    
+    return aLastName > bLastName ? 1: -1;
+});
+
+console.log(find);
+
+
 // 8. Reduce Exercise
-// Sum up the instances of each of these
-const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+// Sum up the instances of each of these (how much items are repeated)
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+
+let count = 0;
+
+let instances = data.reduce((acc, cv) =>{
+    /*acc[cv] --> acc[] makes acc an empty object and cv moves through the array so it passes the array values to the acc = acc.truck | acc.walk etc..
+    it´s empty so it throws an error.
+    */
+   if (!acc[cv]) { // FIRST STEP: Checking if acc[cv] doesn´t exists returns true
+       acc[cv] = 0; // Given that the object in that "cv" position does not exist, we initialize it in 0, giving it a value and avoiding the error.
+   }
+   acc[cv]++; /* SECOND STEP: We initialize the acc as an object (see last line) and count each time a match is found "acc[car]"
+    "acc[cv]++ would increment it by one."
+    */
+   return acc;
+}, {}); // "We START with a blank object. acc[cv] = 0 instantiates them first in a 0 position, then after finding matches it starts counting"
+
+console.log(instances);
